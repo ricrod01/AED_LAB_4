@@ -1,9 +1,24 @@
+/**
+ * @author Ricardo Rodríguez
+ * @version 1
+ * Clase para las listas simplemente enlazadas.
+ * fecha_creación = 14/02/2025
+ * fecha_modificación = 16/02/2025
+ */
+
 public class SingleLinkedList<T> extends abstractList<T>
 {
+
+    // Clase que define el nodo.
+
     private class Node
     {
         T data;
         Node next;
+
+        /**
+        * @param data Objeto que estará en el nodo.
+        */
 
         Node(T data)
         {
@@ -14,10 +29,16 @@ public class SingleLinkedList<T> extends abstractList<T>
 
     private Node head;
 
+    // Constructor
+
     public SingleLinkedList()
     {
         this.head = null;
     }
+
+    /**
+     * @param item Objeto a agregar a la lista.
+    */
 
     @Override
     public void add(T item)
@@ -38,6 +59,11 @@ public class SingleLinkedList<T> extends abstractList<T>
         }
         count++;
     }
+
+    /**
+     * @param index Posición del objeto a quitar de la lista.
+     * @return Objeto a quitar de la lista.
+    */
 
     @Override
     public T remove(int index)
@@ -65,6 +91,11 @@ public class SingleLinkedList<T> extends abstractList<T>
         count--;
         return temp.data;
     }
+
+    /**
+     * @param index Índice del elemento requerido.
+     * @return Objeto en la posición del índice.
+    */
 
     @Override
     public T get(int index)

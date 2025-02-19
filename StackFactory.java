@@ -1,3 +1,11 @@
+/**
+ * @author Ricardo Rodríguez
+ * @version 1
+ * Clase que permite crear los distintos tipos de stack.
+ * fecha_creación = 14/02/2025
+ * fecha_modificación = 16/02/2025
+ */
+
 public class StackFactory
 {
     public enum StackType
@@ -7,7 +15,8 @@ public class StackFactory
 
     public static <T> Stack<T> createStack(StackType type, ListFactory<T> listFactory, ListFactory.ListType listType)
     {
-        switch (type) {
+        switch (type) 
+        {
             case ARRAY_LIST:
                 return new StackArrayList<>();
             case VECTOR:
@@ -15,7 +24,7 @@ public class StackFactory
             case LINKED_LIST:
                 if (listFactory == null)
                 {
-                    throw new IllegalArgumentException("Se requiere un ListFactory para crear StackList");
+                    throw new IllegalArgumentException("Se requiere un ListFactory para crear el StackList");
                 }
                 return new StackList<>(listFactory.createList(listType));
             default:
