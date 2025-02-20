@@ -3,37 +3,21 @@
  * @version 1
  * Clase principal.
  * fecha_creación = 14/02/2025
- * fecha_modificación = 18/02/2025
+ * fecha_modificación = 19/02/2025
  */
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-
-/**
- * Clase principal que lee una ecuación desde un archivo y la evalúa utilizando una calculadora.
- */
+import java.util.Scanner;
 
 class Main
 {
-    private static Calculadora calculadora;
-
-    /**
-     * Método principal del programa.
-     * Lee una expresión matemática desde un archivo y la evalúa usando la clase Calculadora.
-     *
-     * @param args Argumentos de la línea de comandos (no utilizados en este programa).
-     */
-
     public static void main(String[] args)
     {
         String ruta = "Ecuacion.txt";
         String linea = null;
-
-/**
-         * Intenta abrir y leer la primera línea del archivo especificado.
-         * Si el archivo no existe o no se puede leer, se captura la excepción.
-         */
+        Scanner sc = new Scanner(System.in);
 
         try (BufferedReader lector = new BufferedReader(new FileReader(ruta)))
         {
@@ -46,35 +30,46 @@ class Main
                 Stack<Character> stack2 = null;
                 boolean flag = true;
                 boolean flag2 = false;
-                int opcion = 1;
 
                 while (flag)
                 {
-                    if (opcion == 1)
+                    System.out.println("\n¿Qué tipo de Stack desea usar?");
+                    System.out.println("1) ArrayList");
+                    System.out.println("2) Vector");
+                    System.out.println("3) Lista simplemente enlazada");
+                    System.out.println("4) Lista doblemente enlazada");
+                    System.out.println("5) Salir del progrma");
+                    String opcion = sc.nextLine();
+
+                    if (opcion.equals("1"))
                     {
                         stack1 = StackFactory.createStack(StackFactory.StackType.ARRAY_LIST, null, null);
                         stack2 = StackFactory.createStack(StackFactory.StackType.ARRAY_LIST, null, null);
                         flag2 = true;
+                        flag = false;
                     }
-                    else if (opcion == 2)
+                    else if (opcion.equals("2"))
                     {
                         stack1 = StackFactory.createStack(StackFactory.StackType.VECTOR, null, null);
                         stack2 = StackFactory.createStack(StackFactory.StackType.VECTOR, null, null);
                         flag2 = true;
+                        flag = false;
                     }
-                    else if (opcion == 3)
+                    else if (opcion.equals("3"))
                     {
                         stack1 = StackFactory.createStack(StackFactory.StackType.LINKED_LIST, listFactory, ListFactory.ListType.SINGLE_LINKED);
                         stack2 = StackFactory.createStack(StackFactory.StackType.LINKED_LIST, listFactory_char, ListFactory.ListType.SINGLE_LINKED);
                         flag2 = true;
+                        flag = false;
                     }
-                    else if (opcion == 4)
+                    else if (opcion.equals("4"))
                     {
                         stack1 = StackFactory.createStack(StackFactory.StackType.LINKED_LIST, listFactory, ListFactory.ListType.DOUBLE_LINKED);
                         stack2 = StackFactory.createStack(StackFactory.StackType.LINKED_LIST, listFactory_char, ListFactory.ListType.DOUBLE_LINKED);
                         flag2 = true;
+                        flag = false;
                     }
-                    else if (opcion == 5)
+                    else if (opcion.equals("5"))
                     {
                         System.out.println("Adiós");
                         flag = false;
@@ -85,10 +80,10 @@ class Main
                     }
                 }
 
-                if (flag2 = true)
+                if (flag2)
                 {
-                    Calculadora calc_array_list = new Calculadora(stack1, stack2);
-                    System.out.println(calc_array_list.Resultado(linea));
+                    Calculadora calculadora = Calculadora.Instancia(stack1, stack2);
+                    System.out.println(calculadora.Resultado(linea));
                 }
             }
             else

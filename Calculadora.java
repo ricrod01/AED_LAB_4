@@ -3,7 +3,7 @@
  * @version 1
  * Clase que simula la calculadora.
  * fecha_creación = 14/02/2025
- * fecha_modificación = 18/02/2025
+ * fecha_modificación = 19/02/2025
  */
 
 public class Calculadora
@@ -13,12 +13,22 @@ public class Calculadora
     private Stack<Character> stack_char;
     private String[] caracteres;
 
-    public Calculadora(Stack<Double> stack, Stack<Character> stack_char)
+    /**
+     * @param stack Stack para datos tipo double.
+     * @param stack_char Stack para carácteres.
+    */
+
+    private Calculadora(Stack<Double> stack, Stack<Character> stack_char)
     {
         this.stack = stack;
         this.stack_char = stack_char;
         caracteres = null;
     }
+
+    /**
+     * @param stack Stack para datos tipo double.
+     * @param stack_char Stack para carácteres.
+    */
 
     public static Calculadora Instancia(Stack<Double> stack, Stack<Character> stack_char)
     {
@@ -29,6 +39,10 @@ public class Calculadora
         return instancia;
     }
 
+    /**
+     * @param ecuacion Ecuación en formato infix.
+     * @return Devuelve la ecuación en formato Postfix.
+    */
 
     public String Traductor(String ecuacion)
     {
@@ -75,7 +89,7 @@ public class Calculadora
             }
             else
             {
-                //errror
+                throw new IllegalArgumentException("Se detectó un caracter que no debería de estar.");
             }
 
         }
@@ -86,6 +100,11 @@ public class Calculadora
         
         return resultado;
     }
+
+    /**
+     * @param token El operador.
+     * @return El orden de operación.
+    */
 
     public int esOperador(String token)
     {
@@ -107,6 +126,13 @@ public class Calculadora
         }
     }
 
+    /**
+     * @param operador Operador.
+     * @param a Segundo operando.
+     * @param b Primer operando.
+     * @return Devuelve el resultado de la operación.
+    */
+
     public double Operar(String operador, double a, double b)
     {
         switch (operador)
@@ -120,6 +146,11 @@ public class Calculadora
             default: throw new IllegalArgumentException("Operador inválido: " + operador);
         }
     }
+
+    /**
+     * @param ecuación Operación a resolver.
+     * @return Devuelve el resultado de la operación.
+    */
     
     public double Resultado(String ecuacion)
     {
@@ -158,7 +189,7 @@ public class Calculadora
         }
         else
         {
-            return -1;
+            throw new IllegalArgumentException("La ecuación está mal escrita.");
         }        
     }
 }
