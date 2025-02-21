@@ -24,12 +24,9 @@ class Main
             linea = lector.readLine();
             if(linea != null)
             {
-                ListFactory<Double> listFactory = new ListFactory<>();
-                ListFactory<Character> listFactory_char = new ListFactory<>();
-                Stack<Double> stack1 = null;
-                Stack<Character> stack2 = null;
                 boolean flag = true;
                 boolean flag2 = false;
+                String opcion = null;
 
                 while (flag)
                 {
@@ -39,33 +36,10 @@ class Main
                     System.out.println("3) Lista simplemente enlazada");
                     System.out.println("4) Lista doblemente enlazada");
                     System.out.println("5) Salir del progrma");
-                    String opcion = sc.nextLine();
+                    opcion = sc.nextLine();
 
-                    if (opcion.equals("1"))
+                    if (opcion.equals("1") || opcion.equals("2") || opcion.equals("3") || opcion.equals("4"))
                     {
-                        stack1 = StackFactory.createStack(StackFactory.StackType.ARRAY_LIST, null, null);
-                        stack2 = StackFactory.createStack(StackFactory.StackType.ARRAY_LIST, null, null);
-                        flag2 = true;
-                        flag = false;
-                    }
-                    else if (opcion.equals("2"))
-                    {
-                        stack1 = StackFactory.createStack(StackFactory.StackType.VECTOR, null, null);
-                        stack2 = StackFactory.createStack(StackFactory.StackType.VECTOR, null, null);
-                        flag2 = true;
-                        flag = false;
-                    }
-                    else if (opcion.equals("3"))
-                    {
-                        stack1 = StackFactory.createStack(StackFactory.StackType.LINKED_LIST, listFactory, ListFactory.ListType.SINGLE_LINKED);
-                        stack2 = StackFactory.createStack(StackFactory.StackType.LINKED_LIST, listFactory_char, ListFactory.ListType.SINGLE_LINKED);
-                        flag2 = true;
-                        flag = false;
-                    }
-                    else if (opcion.equals("4"))
-                    {
-                        stack1 = StackFactory.createStack(StackFactory.StackType.LINKED_LIST, listFactory, ListFactory.ListType.DOUBLE_LINKED);
-                        stack2 = StackFactory.createStack(StackFactory.StackType.LINKED_LIST, listFactory_char, ListFactory.ListType.DOUBLE_LINKED);
                         flag2 = true;
                         flag = false;
                     }
@@ -82,7 +56,7 @@ class Main
 
                 if (flag2)
                 {
-                    Calculadora calculadora = Calculadora.Instancia(stack1, stack2);
+                    Calculadora calculadora = Calculadora.Instancia(opcion);
                     System.out.println("El resultado obtenido es: " + calculadora.Resultado(linea));
                 }
             }

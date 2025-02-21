@@ -18,10 +18,36 @@ public class Calculadora
      * @param stack_char Stack para carácteres.
     */
 
-    private Calculadora(Stack<Double> stack, Stack<Character> stack_char)
+    private Calculadora(String opcion)
     {
-        this.stack = stack;
-        this.stack_char = stack_char;
+        ListFactory<Double> listFactory = new ListFactory<>();
+        ListFactory<Character> listFactory_char = new ListFactory<>();
+        Stack<Double> stack1 = null;
+        Stack<Character> stack2 = null;
+
+        if (opcion.equals("1"))
+        {
+            stack1 = StackFactory.createStack(StackFactory.StackType.ARRAY_LIST, null, null);
+            stack2 = StackFactory.createStack(StackFactory.StackType.ARRAY_LIST, null, null);
+        }
+        else if (opcion.equals("2"))
+        {
+            stack1 = StackFactory.createStack(StackFactory.StackType.VECTOR, null, null);
+            stack2 = StackFactory.createStack(StackFactory.StackType.VECTOR, null, null);
+        }
+        else if (opcion.equals("3"))
+        {
+            stack1 = StackFactory.createStack(StackFactory.StackType.LINKED_LIST, listFactory, ListFactory.ListType.SINGLE_LINKED);
+            stack2 = StackFactory.createStack(StackFactory.StackType.LINKED_LIST, listFactory_char, ListFactory.ListType.SINGLE_LINKED);
+        }
+        else if (opcion.equals("4"))
+        {
+            stack1 = StackFactory.createStack(StackFactory.StackType.LINKED_LIST, listFactory, ListFactory.ListType.DOUBLE_LINKED);
+            stack2 = StackFactory.createStack(StackFactory.StackType.LINKED_LIST, listFactory_char, ListFactory.ListType.DOUBLE_LINKED);
+        }
+
+        this.stack = stack1;
+        this.stack_char = stack2;
         caracteres = null;
     }
 
@@ -30,11 +56,11 @@ public class Calculadora
      * @param stack_char Stack para carácteres.
     */
 
-    public static Calculadora Instancia(Stack<Double> stack, Stack<Character> stack_char)
+    public static Calculadora Instancia(String opcion)
     {
         if (instancia == null) 
         {
-            instancia = new Calculadora(stack, stack_char);
+            instancia = new Calculadora(opcion);
         }
         return instancia;
     }

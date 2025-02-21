@@ -19,7 +19,7 @@ public class PruebaCalculadora
     {
         Stack<Double> stack1 = new StackArrayList<>();
         Stack<Character> stack2 = new StackArrayList<>();
-        Calculadora calc = Calculadora.Instancia(stack1, stack2);
+        Calculadora calc = Calculadora.Instancia("1");
         assertEquals("1 4 + 5 3 + 2 ^ * 3 /", calc.Traductor("(1 + 4)*(5 + 3)^2/3"));
     }
 
@@ -30,7 +30,7 @@ public class PruebaCalculadora
     {
         Stack<Double> stack1 = new StackArrayList<>();
         Stack<Character> stack2 = new StackArrayList<>();
-        Calculadora calc = Calculadora.Instancia(stack1, stack2);
+        Calculadora calc = Calculadora.Instancia("1");
         assertEquals(32, calc.Resultado("(1 + 4)*(5 + 3)^2/10"));
     }
 
