@@ -95,7 +95,7 @@ public class Calculadora
         }
         while (!stack_char.isEmpty())
         {
-            resultado = resultado + stack_char.pop();
+            resultado = resultado + " " + stack_char.pop();
         }
         
         return resultado;

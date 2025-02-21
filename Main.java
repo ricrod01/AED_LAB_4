@@ -83,7 +83,7 @@ class Main
                 if (flag2)
                 {
                     Calculadora calculadora = Calculadora.Instancia(stack1, stack2);
-                    System.out.println(calculadora.Resultado(linea));
+                    System.out.println("El resultado obtenido es: " + calculadora.Resultado(linea));
                 }
             }
             else
